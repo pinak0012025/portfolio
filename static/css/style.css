@@ -1,0 +1,40 @@
+:root {
+    --bg-color: #0b0e14;
+    --card-bg: #161b22;
+    --accent-blue: #58a6ff;
+    --text-main: #c9d1d9;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: 'Inter', sans-serif;
+}
+
+.hero-section {
+    height: 70vh;
+    background: radial-gradient(circle at center, #1c2a4a 0%, #0b0e14 100%);
+}
+
+.text-gradient {
+    background: linear-gradient(90deg, #58a6ff, #bc8cf2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.stat-card, .project-card {
+    background: var(--card-bg);
+    border: 1px solid #30363d;
+    border-radius: 12px;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-blue);
+}
+
+.stat-card h3 {
+    color: var(--accent-blue);
+    font-family: 'JetBrains Mono', monospace;
+}
