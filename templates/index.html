@@ -1,76 +1,224 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ p.name }} | DevOps Portfolio</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pinak Das | Full-Stack DevOps Engineer</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
 
-<header class="hero-section text-center d-flex align-items-center">
-    <div class="container">
-        <h1 class="display-3 fw-bold">{{ p.name }}</h1>
-        <h2 class="text-gradient">{{ p.title }}</h2>
-        <p class="lead mt-3 text-secondary">AWS · GCP · CI/CD · Cloud-Native · AI-Driven Automation</p>
-        <div class="mt-4">
-            <a href="#contact" class="btn btn-outline-primary btn-lg">Get In Touch</a>
-        </div>
-    </div>
-</header>
+<nav class="navbar">
+  <div class="logo">Pinak<span>Das</span></div>
+  <div class="nav-links">
+    <a href="#home">Home</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#devops">DevOps</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
 
-<section class="container my-5">
-    <div class="row text-center g-4">
-        <div class="col-md-4">
-            <div class="stat-card p-4">
-                <h3>{{ p.total_exp }}</h3>
-                <p>Years in IT</p>
-            </div>
+<section id="home" class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <p class="badge">Full-Stack • DevOps • Cloud • AI Automation</p>
+    <h1>Pinak Das</h1>
+    <h2>Full-Stack Developer & DevOps Automation Engineer</h2>
+    <p class="hero-text">
+      I build scalable SaaS platforms, cloud-native systems, CI/CD pipelines,
+      Kubernetes deployments, Terraform infrastructure and AI-driven automation platforms.
+    </p>
+    <div class="hero-buttons">
+      <a href="#projects" class="btn primary">View Projects</a>
+      <a href="#contact" class="btn secondary">Get In Touch</a>
+    </div>
+  </div>
+</section>
+
+<section class="metrics">
+  <div class="metric-card"><h3>12+</h3><p>Years in IT</p></div>
+  <div class="metric-card"><h3>7+</h3><p>DevOps & Cloud</p></div>
+  <div class="metric-card"><h3>3</h3><p>Recent Client Projects</p></div>
+  <div class="metric-card"><h3>Expert</h3><p>AWS • GCP • CI/CD</p></div>
+</section>
+
+<section id="skills" class="section">
+  <div class="section-title">
+    <span></span>
+    <h2>Engineering Skills</h2>
+  </div>
+
+  <div class="skills-grid">
+    {% for category, items in skills.items() %}
+    <div class="skill-box">
+      <h3>{{ category }}</h3>
+      <div class="tags">
+        {% for item in items %}
+        <span>{{ item }}</span>
+        {% endfor %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<section id="devops" class="section">
+  <div class="section-title">
+    <span></span>
+    <h2>DevOps Control Center</h2>
+  </div>
+
+  <div class="dashboard">
+    <div class="dash-card success">
+      <p>Pipeline Status</p>
+      <h3>Healthy</h3>
+      <small>GitHub Actions / Jenkins / Tekton</small>
+    </div>
+    <div class="dash-card">
+      <p>Kubernetes</p>
+      <h3>Running</h3>
+      <small>Pods • Services • Ingress</small>
+    </div>
+    <div class="dash-card">
+      <p>Terraform</p>
+      <h3>IaC Ready</h3>
+      <small>AWS / GCP Infrastructure</small>
+    </div>
+    <div class="dash-card warning">
+      <p>Monitoring</p>
+      <h3>Active</h3>
+      <small>Grafana / Dynatrace / Datadog</small>
+    </div>
+  </div>
+
+  <div class="terminal">
+    <div class="terminal-header">
+      <span></span><span></span><span></span>
+    </div>
+    <pre>
+$ terraform plan
+Infrastructure validated successfully
+
+$ kubectl get pods
+portfolio-api      Running
+frontend-service   Running
+monitoring-stack   Running
+
+$ argocd app sync portfolio
+Application synced successfully
+    </pre>
+  </div>
+</section>
+
+<section id="projects" class="section">
+  <div class="section-title">
+    <span></span>
+    <h2>Client Project Case Studies</h2>
+  </div>
+
+  <div class="projects-grid">
+    {% for project in projects %}
+    <div class="project-card">
+      <div class="project-top">
+        <p>{{ project.client }}</p>
+        <span>{{ project.type }}</span>
+      </div>
+      <h3>{{ project.title }}</h3>
+      <p class="project-desc">{{ project.desc }}</p>
+      <div class="tags">
+        {% for tech in project.stack %}
+        <span>{{ tech }}</span>
+        {% endfor %}
+      </div>
+      <div class="impact">
+        <strong>Impact:</strong> {{ project.impact }}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="section architecture">
+  <div class="section-title">
+    <span></span>
+    <h2>Cloud Architecture Capability</h2>
+  </div>
+
+  <div class="architecture-box">
+    <div>Frontend<br><small>React / Next.js</small></div>
+    <div>API Layer<br><small>Flask / FastAPI</small></div>
+    <div>CI/CD<br><small>GitHub Actions / Jenkins</small></div>
+    <div>Container<br><small>Docker / Kubernetes</small></div>
+    <div>Cloud<br><small>AWS / GCP / Vercel</small></div>
+    <div>Monitoring<br><small>Grafana / Dynatrace</small></div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+    <h2>Let’s Build Scalable Cloud Platforms</h2>
+
+    <p>
+        Available for Full-Stack Development, DevOps Engineering,
+        Cloud Infrastructure, Kubernetes, Terraform, CI/CD Automation,
+        AI Automation and SaaS Platform Development.
+    </p>
+
+    <div class="contact-info">
+
+        <div class="contact-card">
+            <h3>📱 Mobile</h3>
+            <a href="tel:+919844988752">
+                +91 9844988752
+            </a>
         </div>
-        <div class="col-md-4">
-            <div class="stat-card p-4">
-                <h3>{{ p.devops_exp }}</h3>
-                <p>DevOps & Cloud</p>
-            </div>
+
+        <div class="contact-card">
+            <h3>📧 Email</h3>
+            <a href="mailto:pinakm007@gmail.com">
+                pinakm007@gmail.com
+            </a>
         </div>
-        <div class="col-md-4">
-            <div class="stat-card p-4">
-                <h3>Expert</h3>
-                <p>AWS & GCP Certified</p>
-            </div>
+
+        <div class="contact-card">
+            <h3>💼 LinkedIn</h3>
+            <a href="https://www.linkedin.com/in/pinak-pani-das-3160b062/" target="_blank">
+                View LinkedIn Profile
+            </a>
         </div>
+
+        <div class="contact-card">
+            <h3>🚀 GitHub</h3>
+            <a href="https://github.com/pinak0012025" target="_blank">
+                github.com/pinak0012025
+            </a>
+        </div>
+
+    </div>
+
+    <div class="contact-buttons">
+        <a href="mailto:pinakm007@gmail.com" class="btn primary">
+            Email Me
+        </a>
+
+        <a href="https://www.linkedin.com/in/pinak-pani-das-3160b062/" 
+           target="_blank" 
+           class="btn secondary">
+            LinkedIn
+        </a>
+
+        <a href="https://github.com/pinak0012025" 
+           target="_blank" 
+           class="btn secondary">
+            GitHub
+        </a>
     </div>
 </section>
 
-<section class="container py-5">
-    <h2 class="mb-5 border-start border-primary border-4 ps-3">Key Projects</h2>
-    <div class="row g-4">
-        <div class="col-md-6">
-            <div class="project-card h-100 p-4">
-                <h4><i class="fas fa-cloud"></i> Hybrid CI/CD Architecture</h4>
-                <p class="text-muted">Scaling Jenkins & GitHub Actions using dynamic VM and K8s agents across multi-cloud environments.</p>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="project-card h-100 p-4">
-                <h4><i class="fas fa-code-branch"></i> GitOps with ArgoCD</h4>
-                <p class="text-muted">Automating Kubernetes deployments with declarative state management and automated rollbacks.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<footer id="contact" class="text-center py-5 mt-5">
-    <p>Let's build the future of infrastructure.</p>
-    <div class="social-links h3">
-        <a href="{{ p.github }}" class="mx-3 text-white"><i class="fab fa-github"></i></a>
-        <a href="{{ p.linkedin }}" class="mx-3 text-white"><i class="fab fa-linkedin"></i></a>
-        <a href="mailto:{{ p.email }}" class="mx-3 text-white"><i class="fas fa-envelope"></i></a>
-    </div>
+<footer>
+  <p>© 2026 Pinak Das • Full-Stack DevOps Engineer</p>
 </footer>
 
 </body>
 </html>
+HTML
